@@ -13,7 +13,9 @@ def registrar_evento(evento, resultado):
 
         if novo_arquivo:
             escritor.writerow([
-                "id", "senha", "email"
+                id,
+                senha,
+                email
             ])
 
         escritor.writerow([
