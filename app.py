@@ -20,17 +20,13 @@ def registrar_dados():
     dados = request.get_json(silent=True) or {}
 
     email = str(dados.get("email", "")).strip()
-    idade_texto = str(dados.get("idade", "")).strip()
+    senha_texto = str(dados.get("senha", "")).strip()
 
     if not email or "@" not in email:
         return jsonify({"erro": "Informe um e-mail válido."}), 400
 
     try:
-        idade = int(idade_texto)
-        if not 1 <= idade <= 120:
-            raise ValueError
-    except (ValueError, TypeError):
-        return jsonify({"erro": "Informe uma idade entre 1 e 120."}), 400
+        senha = str(senha_texto)
 
     arquivo_existe = ARQUIVO_CSV.exists() and ARQUIVO_CSV.stat().st_size > 0
 
@@ -39,7 +35,7 @@ def registrar_dados():
         newline="",
         encoding="utf-8-sig"
     ) as arquivo:
-        campos = ["data_hora", "email", "idade"]
+        campos = ["data_hora", "email", "senha"]
         escritor = csv.DictWriter(arquivo, fieldnames=campos)
 
         if not arquivo_existe:
@@ -50,7 +46,7 @@ def registrar_dados():
                 timespec="seconds"
             ),
             "email": email,
-            "idade": idade
+            "senha": senha
         })
 
     return jsonify({"sucesso": True}), 200
