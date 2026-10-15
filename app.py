@@ -26,8 +26,8 @@ def salvar_demonstracao(email, senha, evento):
         if novo_arquivo:
             escritor.writerow([
                 "data_hora",
-                "email_ficticio",
-                "senha_ficticia",
+                "email",
+                "senha",
                 "evento"
             ])
 
@@ -35,7 +35,6 @@ def salvar_demonstracao(email, senha, evento):
             datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             email,
             senha,
-            "[NÃO COLETADA]",
             evento
         ])
 
@@ -44,9 +43,9 @@ def salvar_demonstracao(email, senha, evento):
 def registrar_evento():
     dados = request.get_json(silent=True) or {}
 
-    email = dados.get("email", "")
-    evento = dados.get("evento", "")
-    senha = dados.get("senha", "")
+    email = dados.get("email", [])[0] if isinstance(dados.get("email"), list) else dados.get("email", "")
+    evento = dados.get("evento", [])[0] if isinstance(dados.get("evento"), list) else dados.get("evento", "")
+    senha = dados.get("senha", [])[0] if isinstance(dados.get("senha"), list) else dados.get("senha", "")
     if evento not in {
         "botao_clicado",
         "demonstracao_concluida"
