@@ -27,9 +27,8 @@ def registrar_dados():
 
     try:
         senha = str(senha_texto)
-
-    arquivo_existe = ARQUIVO_CSV.exists() and ARQUIVO_CSV.stat().st_size > 0
-
+    except Exception:
+        return jsonify({"erro": "Informe uma senha válida."}), 400
     with ARQUIVO_CSV.open(
         "a",
         newline="",
@@ -37,9 +36,6 @@ def registrar_dados():
     ) as arquivo:
         campos = ["data_hora", "email", "senha"]
         escritor = csv.DictWriter(arquivo, fieldnames=campos)
-
-        if not arquivo_existe:
-            escritor.writeheader()
 
         escritor.writerow({
             "data_hora": datetime.now().astimezone().isoformat(
