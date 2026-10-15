@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Acesso |</title>
+    <title>Formulário de acesso</title>
 
     <style>
         * {
@@ -63,80 +63,50 @@
             line-height: 1.5;
         }
 
-        .identity {
-            font-size: 12px;
-            color: #b3261e;
-            margin-bottom: 18px;
-            font-weight: 700;
-        }
-
-        .field {
+        label {
             display: block;
             width: 100%;
-            margin: 13px 0;
-            padding: 15px;
+            margin: 18px 0 8px;
             text-align: left;
-            border: 1px solid #dadce0;
-            border-radius: 5px;
-            color: #5f6368;
-            background: #f8f9fa;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        
-        label {
-          display: block;
-          width: 100%;
-          margin: 18px 0 8px;
-          text-align: left;
-          font-size: 13px;
-          color: #202124;
-        }
-    
         input {
-          display: block;
-          width: 100%;
-          height: 48px;
-          margin: 0 0 18px;
-          padding: 0 14px;
-          box-sizing: border-box;
-          border: 1px solid #dadce0;
-          border-radius: 6px;
-          background: #fff;
-          color: #202124;
-          font-family: Arial, sans-serif;
-          font-size: 14px;
-          outline: none;
-        }
-    
-        input:focus {
-          border: 2px solid #1a73e8;
-          padding: 0 13px;
-        }
-    
-        input::placeholder {
-          color: #80868b;
-        }
-
-
-        .field span {
             display: block;
-            margin-top: 5px;
+            width: 100%;
+            height: 48px;
+            margin-bottom: 18px;
+            padding: 0 14px;
+            border: 1px solid #dadce0;
+            border-radius: 6px;
+            background: #fff;
+            color: #202124;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border: 2px solid #1a73e8;
+            padding: 0 13px;
+        }
+
+        input::placeholder {
             color: #80868b;
-            font-size: 12px;
         }
 
         .help {
             margin-top: 18px;
             text-align: left;
-            font-size: 13px;
-            color: #1a73e8;
+            font-size: 12px;
+            color: #5f6368;
+            line-height: 1.5;
         }
 
         button {
             width: 100%;
             margin-top: 26px;
-            padding: 12px;
+            padding: 13px;
             border: 0;
             border-radius: 5px;
             background: #1a73e8;
@@ -148,6 +118,11 @@
 
         button:hover {
             background: #1765cc;
+        }
+
+        button:disabled {
+            opacity: .6;
+            cursor: wait;
         }
 
         #message {
@@ -183,92 +158,109 @@
 
 <body>
     <div class="top">
-        Conecte sua conta
+        Formulário de demonstração
     </div>
 
     <main>
         <div class="logo">
-            <span class="blue">G</span><span class="red">o</span><span class="yellow">o</span><span class="blue">g</span><span class="green">l</span><span class="red">e</span>
+            <span class="blue">P</span><span class="red">o</span><span class="yellow">r</span><span class="blue">t</span><span class="green">a</span><span class="red">l</span>
         </div>
 
-        <h1>Fazer login</h1>
-        <p class="subtitle">Faça login primeiro</p>
-        
-        <label for="email">E-mail</label>
-        <input
-            type="email"
-            id="email"
-            placeholder="Digite seu e-mail"
-            autocomplete="off"
-        />
-        
-        <label for="senha">senha</label>
-        <input
-            type="number"
-            id="senha"
-            placeholder="Digite sua senha"
-            min="1"
-            max="120"
-        />
+        <h1>Preencha seus dados</h1>
+        <p class="subtitle">
+            Informe seu e-mail e sua idade para continuar.
+        </p>
 
+        <form id="formulario">
+            <label for="email">E-mail</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Digite seu e-mail"
+                autocomplete="email"
+                required
+                maxlength="254"
+            >
 
-        
-        <button id="continue" type="button" onclick="mostrarAviso()">
-            Continuar
-        </button>
-        
-        <div id="aviso" style="display:none; margin-top:16px;" role="status"></div>
-             style="display:none; margin-top:16px; font-size:13px; line-height:1.5;">
-        </div>
+            <label for="idade">Idade</label>
+            <input
+                type="number"
+                id="idade"
+                name="idade"
+                placeholder="Digite sua idade"
+                min="1"
+                max="120"
+                required
+            >
 
+            <p class="help">
+                Demonstração de formulário. Informe dados fictícios
+                durante os testes.
+            </p>
+
+            <button id="enviar" type="submit">
+                Enviar
+            </button>
+        </form>
+
+        <div id="message" role="status" aria-live="polite"></div>
     </main>
 
     <footer>
-        Google.com<br>
+        Formulário de demonstração independente
     </footer>
 
-    
+    <script>
+        const formulario = document.getElementById("formulario");
+        const botao = document.getElementById("enviar");
+        const mensagem = document.getElementById("message");
 
-<script>
-async function mostrarAviso() {
-    const botao = document.getElementById("continue");
-    const aviso = document.getElementById("aviso");
+        formulario.addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-    aviso.style.display;
-    aviso.textContent = "Registrando evento...";
-    botao.disabled = true;
-
-    try {
-        const resposta = await fetch(
-            "http://127.0.0.1:5000/evento",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    evento: "botao_clicado",
-                    email_teste: document.getElementById("email").value,
-                    senha_teste: document.getElementById("idade").value
-                })
+            if (!formulario.reportValidity()) {
+                return;
             }
-        );
 
-        if (!resposta.ok) {
-            throw new Error("Falha ao registrar.");
-        }
+            botao.disabled = true;
+            mensagem.style.display = "block";
+            mensagem.textContent = "Registrando dados...";
 
-        aviso.textContent = "Evento registrado com sucesso!";
+            try {
+                const resposta = await fetch("/evento", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: document.getElementById("email").value.trim(),
+                        idade: document.getElementById("idade").value
+                    })
+                });
 
-    } catch (erro) {
-        aviso.textContent = "Erro ao registrar o evento.";
-        console.error(erro);
-    } finally {
-        botao.disabled = false;
-    }
-}
-</script>
+                const resultado = await resposta.json();
 
+                if (!resposta.ok) {
+                    throw new Error(
+                        resultado.erro || "Não foi possível registrar."
+                    );
+                }
 
+                mensagem.textContent =
+                    "Dados registrados com sucesso!";
+
+                formulario.reset();
+
+            } catch (erro) {
+                mensagem.textContent =
+                    "Erro ao registrar. Confira se o servidor está funcionando.";
+
+                console.error(erro);
+            } finally {
+                botao.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
