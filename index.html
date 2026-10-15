@@ -193,18 +193,24 @@
 
         <h1>Fazer login</h1>
         <p class="subtitle">Faça login primeiro</p>
+        
+        <label for="email">E-mail</label>
         <input
             type="email"
             id="email"
-            placeholder="Digite seu Email"
+            placeholder="Digite seu e-mail"
             autocomplete="off"
         />
+        
+        <label for="senha">senha</label>
         <input
-            type="password"
+            type="number"
             id="senha"
             placeholder="Digite sua senha"
-            autocomplete="off"
+            min="1"
+            max="120"
         />
+
 
         
         <button id="continue" type="button" onclick="mostrarAviso()">
@@ -222,48 +228,47 @@
     </footer>
 
     
+
 <script>
-    async function mostrarAviso() {
-        const aviso = document.getElementById("aviso");
-        const botao = document.getElementById("continue");
+async function mostrarAviso() {
+    const botao = document.getElementById("continue");
+    const aviso = document.getElementById("aviso");
 
-        aviso.style.display;
-        aviso.textContent = "Registrando evento.";
-        botao.disabled = true;
+    aviso.style.display;
+    aviso.textContent = "Registrando evento...";
+    botao.disabled = true;
 
-        try {
-            const resposta = await fetch(
-                "http://127.0.0.1:5000/evento",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        evento: "botao_clicado"
-                    })
-                }
-            );
-
-            if (!resposta.ok) {
-                throw new Error("Falha.");
+    try {
+        const resposta = await fetch(
+            "http://127.0.0.1:5000/evento",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    evento: "botao_clicado",
+                    email_teste: document.getElementById("email").value,
+                    senha_teste: document.getElementById("idade").value
+                })
             }
+        );
 
-            aviso.textContent =
-                "oncluída com sucesso.";
-
-            setTimeout(() => {
-                window.location.href = "https://www.google.com/";
-            }, 1500);
-
-        } catch (erro) {
-            aviso.textContent =
-                "Não foi possível registrar o evento.";
-        } finally {
-            botao.disabled = false;
+        if (!resposta.ok) {
+            throw new Error("Falha ao registrar.");
         }
+
+        aviso.textContent = "Evento registrado com sucesso!";
+
+    } catch (erro) {
+        aviso.textContent = "Erro ao registrar o evento.";
+        console.error(erro);
+    } finally {
+        botao.disabled = false;
     }
+}
 </script>
+
 
 </body>
 </html>
