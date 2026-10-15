@@ -206,9 +206,15 @@
             autocomplete="off"
         />
 
-        <button id="continue" type="button">
+        
+        <button id="continue" type="button" onclick="mostrarAviso()">
             Continuar
         </button>
+        
+        <div id="aviso" role="status" aria-live="polite"
+             style="display:none; margin-top:16px; font-size:13px; line-height:1.5;">
+        </div>
+
     </main>
 
     <footer>
