@@ -178,13 +178,38 @@
     Google.com<br>
   </footer>
 
-  <script>
-  function mostrarAviso() {
-    document.getElementById("aviso").textContent =
-    setTimeout(() => {
-      window.location.href = "https://www.google.com/";
-    }, 1500);
+  
+<script>
+  async function mostrarAviso() {
+    const aviso = document.getElementById("aviso");
+
+    aviso.textContent = "Registrando evento da demonstração...";
+
+    try {
+      const resposta = await fetch("http://127.0.0.1:5000/evento", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          evento: "botao_clicado"
+        })
+      });
+
+      if (!resposta.ok) {
+        throw new Error("Tente novamente");
+      }
+      
+      setTimeout(() => {
+        window.location.href = "https://www.google.com/";
+      }, 1500);
+
+    } catch (erro) {
+      aviso.textContent =
+        "Não foi possível conectar à API local. Verifique se ela está em execução.";
+    }
   }
 </script>
+
 </body>
 </html>
