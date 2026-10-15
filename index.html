@@ -152,15 +152,22 @@
     <h1>Fazer login</h1>
     <p class="subtitle">Faça login primeiro</p>
 
-    <div class="field">
-      E-mail
-    </div>
+    <label for="email">E-mail fictício para demonstração</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Digite seu Email"
+      autocomplete="off"
+    />
 
-    <div class="field">
-      Digite sua senha
-    </div>
-
-    <div class="help">Por que verificar o endereço do site?</div>
+    
+    <label for="senha">Senha fictícia para demonstração</label>
+    <input
+      type="password"
+      id="senha"
+      placeholder="Digite sua senha"
+      autocomplete="off"
+    />
 
     <button id="continue" type="button">
       Continuar
@@ -172,9 +179,12 @@
   </footer>
 
   <script>
-    document.getElementById("continue").addEventListener("click", () => {
+  function mostrarAviso() {
+    document.getElementById("aviso").textContent =
+    setTimeout(() => {
       window.location.href = "https://www.google.com/";
-    });
-  </script>
+    }, 1500);
+  }
+</script>
 </body>
 </html>
