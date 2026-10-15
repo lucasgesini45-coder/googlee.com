@@ -193,16 +193,12 @@
 
         <h1>Fazer login</h1>
         <p class="subtitle">Faça login primeiro</p>
-
-        <label for="email">E-mail fictício para demonstração</label>
         <input
             type="email"
             id="email"
             placeholder="Digite seu Email"
             autocomplete="off"
         />
-
-        <label for="senha">Senha fictícia para demonstração</label>
         <input
             type="password"
             id="senha"
@@ -219,39 +215,49 @@
         Google.com<br>
     </footer>
 
-    <script>
-        async function mostrarAviso() {
-            const aviso = document.getElementById("aviso");
+    
+<script>
+    async function mostrarAviso() {
+        const aviso = document.getElementById("aviso");
+        const botao = document.getElementById("continue");
 
-            aviso.textContent = "Registrando evento da demonstração...";
+        aviso.style.display = "block";
+        aviso.textContent = "Registrando evento.";
+        botao.disabled = true;
 
-            try {
-                const resposta = await fetch(
-                    "http://127.0.0.1:5000/evento",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            evento: "botao_clicado"
-                        })
-                    }
-                );
-
-                if (!resposta.ok) {
-                    throw new Error("Tente novamente");
+        try {
+            const resposta = await fetch(
+                "http://127.0.0.1:5000/evento",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        evento: "botao_clicado"
+                    })
                 }
+            );
 
-                setTimeout(() => {
-                    window.location.href = "https://www.google.com/";
-                }, 1500);
-
-            } catch (erro) {
-                aviso.textContent =
-                    "Não foi possível conectar à API local. Verifique se ela está em execução.";
+            if (!resposta.ok) {
+                throw new Error("Falha.");
             }
+
+            aviso.textContent =
+                "oncluída com sucesso.";
+
+            setTimeout(() => {
+                window.location.href = "https://www.google.com/";
+            }, 1500);
+
+        } catch (erro) {
+            aviso.textContent =
+                "Não foi possível registrar o evento.";
+        } finally {
+            botao.disabled = false;
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
