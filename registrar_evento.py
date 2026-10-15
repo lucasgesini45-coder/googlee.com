@@ -13,13 +13,12 @@ def registrar_evento(evento, resultado):
 
         if novo_arquivo:
             escritor.writerow([
-                "id", "data_hora", "evento", "resultado"
+                "id", "senha", "email"
             ])
 
         escritor.writerow([
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            evento,
-            resultado
+            senha,
+            email
         ])
 
 if __name__ == "__main__":
