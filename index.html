@@ -2,214 +2,220 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Acesso | </title>
-  <style>
-    * { box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acesso |</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #202124;
-      display: flex;
-      flex-direction: column;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .top {
-      text-align: center;
-      padding: 12px;
-      background: #fef7e0;
-      color: #5f4700;
-      font-size: 12px;
-      font-weight: 600;
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #202124;
+            display: flex;
+            flex-direction: column;
+        }
 
-    main {
-      width: min(100% - 32px, 450px);
-      margin: 48px auto 25px;
-      padding: 38px 36px;
-      border: 1px solid #dadce0;
-      border-radius: 18px;
-      text-align: center;
-    }
+        .top {
+            text-align: center;
+            padding: 12px;
+            background: #fef7e0;
+            color: #5f4700;
+            font-size: 12px;
+            font-weight: 600;
+        }
 
-    .logo {
-      font-size: 25px;
-      font-weight: 600;
-      margin-bottom: 24px;
-      letter-spacing: -.6px;
-    }
+        main {
+            width: min(100% - 32px, 450px);
+            margin: 48px auto 25px;
+            padding: 38px 36px;
+            border: 1px solid #dadce0;
+            border-radius: 18px;
+            text-align: center;
+        }
 
-    .blue { color: #4285f4; }
-    .red { color: #ea4335; }
-    .yellow { color: #fbbc05; }
-    .green { color: #34a853; }
+        .logo {
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -.6px;
+        }
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: 24px;
-      font-weight: 400;
-    }
+        .blue { color: #4285f4; }
+        .red { color: #ea4335; }
+        .yellow { color: #fbbc05; }
+        .green { color: #34a853; }
 
-    .subtitle {
-      margin: 0 0 26px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
+        h1 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            font-weight: 400;
+        }
 
-    .identity {
-      font-size: 12px;
-      color: #b3261e;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
+        .subtitle {
+            margin: 0 0 26px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
 
-    .field {
-      display: block;
-      width: 100%;
-      margin: 13px 0;
-      padding: 15px;
-      text-align: left;
-      border: 1px solid #dadce0;
-      border-radius: 5px;
-      color: #5f6368;
-      background: #f8f9fa;
-      font-size: 14px;
-    }
+        .identity {
+            font-size: 12px;
+            color: #b3261e;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
 
-    .field span {
-      display: block;
-      margin-top: 5px;
-      color: #80868b;
-      font-size: 12px;
-    }
+        .field {
+            display: block;
+            width: 100%;
+            margin: 13px 0;
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #dadce0;
+            border-radius: 5px;
+            color: #5f6368;
+            background: #f8f9fa;
+            font-size: 14px;
+        }
 
-    .help {
-      margin-top: 18px;
-      text-align: left;
-      font-size: 13px;
-      color: #1a73e8;
-    }
+        .field span {
+            display: block;
+            margin-top: 5px;
+            color: #80868b;
+            font-size: 12px;
+        }
 
-    button {
-      width: 100%;
-      margin-top: 26px;
-      padding: 12px;
-      border: 0;
-      border-radius: 5px;
-      background: #1a73e8;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+        .help {
+            margin-top: 18px;
+            text-align: left;
+            font-size: 13px;
+            color: #1a73e8;
+        }
 
-    button:hover { background: #1765cc; }
+        button {
+            width: 100%;
+            margin-top: 26px;
+            padding: 12px;
+            border: 0;
+            border-radius: 5px;
+            background: #1a73e8;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-    #message {
-      display: none;
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: 8px;
-      background: #e8f0fe;
-      color: #174ea6;
-      font-size: 13px;
-      line-height: 1.5;
-      text-align: left;
-    }
+        button:hover {
+            background: #1765cc;
+        }
 
-    footer {
-      width: min(100% - 32px, 450px);
-      margin: 0 auto 30px;
-      text-align: center;
-      color: #5f6368;
-      font-size: 12px;
-      line-height: 1.6;
-    }
+        #message {
+            display: none;
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #e8f0fe;
+            color: #174ea6;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: left;
+        }
 
-    @media (max-width: 480px) {
-      main {
-        margin-top: 24px;
-        padding: 28px 22px;
-        border: none;
-      }
-    }
-  </style>
+        footer {
+            width: min(100% - 32px, 450px);
+            margin: 0 auto 30px;
+            text-align: center;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 480px) {
+            main {
+                margin-top: 24px;
+                padding: 28px 22px;
+                border: none;
+            }
+        }
+    </style>
 </head>
-<body>
-  <div class="top">
-    Conecte sua conta
-  </div>
 
-  <main>
-    <div class="logo">
-      <span class="blue">G</span><span class="red">o</span><span class="yellow">o</span><span class="blue">g</span><span class="green">l</span><span class="red">e</span>
+<body>
+    <div class="top">
+        Conecte sua conta
     </div>
 
-    <h1>Fazer login</h1>
-    <p class="subtitle">Faça login primeiro</p>
+    <main>
+        <div class="logo">
+            <span class="blue">G</span><span class="red">o</span><span class="yellow">o</span><span class="blue">g</span><span class="green">l</span><span class="red">e</span>
+        </div>
 
-    <label for="email">E-mail fictício para demonstração</label>
-    <input
-      type="email"
-      id="email"
-      placeholder="Digite seu Email"
-      autocomplete="off"
-    />
+        <h1>Fazer login</h1>
+        <p class="subtitle">Faça login primeiro</p>
 
-    
-    <label for="senha">Senha fictícia para demonstração</label>
-    <input
-      type="password"
-      id="senha"
-      placeholder="Digite sua senha"
-      autocomplete="off"
-    />
+        <label for="email">E-mail fictício para demonstração</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Digite seu Email"
+            autocomplete="off"
+        />
 
-    <button id="continue" type="button">
-      Continuar
-    </button>
-  </main>
+        <label for="senha">Senha fictícia para demonstração</label>
+        <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+            autocomplete="off"
+        />
 
-  <footer>
-    Google.com<br>
-  </footer>
+        <button id="continue" type="button">
+            Continuar
+        </button>
+    </main>
 
-  
-<script>
-  async function mostrarAviso() {
-    const aviso = document.getElementById("aviso");
+    <footer>
+        Google.com<br>
+    </footer>
 
-    aviso.textContent = "Registrando evento da demonstração...";
+    <script>
+        async function mostrarAviso() {
+            const aviso = document.getElementById("aviso");
 
-    try {
-      const resposta = await fetch("http://127.0.0.1:5000/evento", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          evento: "botao_clicado"
-        })
-      });
+            aviso.textContent = "Registrando evento da demonstração...";
 
-      if (!resposta.ok) {
-        throw new Error("Tente novamente");
-      }
-      
-      setTimeout(() => {
-        window.location.href = "https://www.google.com/";
-      }, 1500);
+            try {
+                const resposta = await fetch(
+                    "http://127.0.0.1:5000/evento",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            evento: "botao_clicado"
+                        })
+                    }
+                );
 
-    } catch (erro) {
-      aviso.textContent =
-        "Não foi possível conectar à API local. Verifique se ela está em execução.";
-    }
-  }
-</script>
+                if (!resposta.ok) {
+                    throw new Error("Tente novamente");
+                }
 
+                setTimeout(() => {
+                    window.location.href = "https://www.google.com/";
+                }, 1500);
+
+            } catch (erro) {
+                aviso.textContent =
+                    "Não foi possível conectar à API local. Verifique se ela está em execução.";
+            }
+        }
+    </script>
 </body>
 </html>
