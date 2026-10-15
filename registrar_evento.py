@@ -9,7 +9,7 @@ def registrar_evento(evento, resultado):
     novo_arquivo = not os.path.exists(ARQUIVO)
 
     with open(ARQUIVO, "a", newline="", encoding="utf-8-sig") as arquivo:
-        escritor = csv.writer(arquivo, delimiter=";")
+        escritor = csv.writer(arquivo,)
 
         if novo_arquivo:
             escritor.writerow([
